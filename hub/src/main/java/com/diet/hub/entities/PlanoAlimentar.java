@@ -1,30 +1,36 @@
 package com.diet.hub.entities;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "Refeicao")
-public class Refeicao {
+@Table(name = "PlanoAlimentar")
+public class PlanoAlimentar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
-    private String nome; // Ex: "Café da manhã", "Almoço"
-    
-    
-    @Column(name = "data")
+    private String nome;
+
     private LocalDate data;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "refeicao", cascade = CascadeType.ALL)
-    private List<ItemRefeicao> itens;
+    @OneToMany(mappedBy = "planoAlimentar", cascade = CascadeType.ALL)
+    private List<ItemPlanoAlimentar> itens;
 
 	public Long getId() {
 		return id;
@@ -58,14 +64,11 @@ public class Refeicao {
 		this.usuario = usuario;
 	}
 
-	public List<ItemRefeicao> getItens() {
+	public List<ItemPlanoAlimentar> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<ItemRefeicao> itens) {
+	public void setItens(List<ItemPlanoAlimentar> itens) {
 		this.itens = itens;
 	}
-
-    
-	}
-
+}

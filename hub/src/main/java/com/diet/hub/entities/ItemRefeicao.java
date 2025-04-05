@@ -3,12 +3,14 @@ package com.diet.hub.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "ItemRefeicao")
 public class ItemRefeicao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "quantidadeEmGramas")
     private Double quantidadeEmGramas;
 
     @ManyToOne

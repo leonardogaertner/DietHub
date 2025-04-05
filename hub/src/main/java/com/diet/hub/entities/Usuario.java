@@ -4,16 +4,26 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Usuario")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
+    
+    @Column(name = "email")
     private String email;
+    
+    @Column(name = "senha")
     private String senha;
+    
+    @Column(name = "objetivo")
     private String objetivo; // "emagrecer", "manter", "ganhar"
+    
+    @Column(name = "caloriasDiarias")
     private Integer caloriasDiarias;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
